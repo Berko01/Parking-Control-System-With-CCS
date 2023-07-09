@@ -1,0 +1,111 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+006     lcd
+006     lcdlat
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020-021 strtok.save
+022     sayac
+023     counter
+024     @PRINTF_D_735.P1
+024     lcd_init.i
+024     @PSTRINGCN7_735.P1
+024     MAIN.@SCRATCH1
+025     @PRINTF_D_735.P1
+025     lcd_init.@SCRATCH1
+025     @PSTRINGCN7_735.@SCRATCH1
+026     @PSTRINGCN7_735.@SCRATCH2
+026     @PRINTF_D_735.@SCRATCH1
+027     @PSTRINGCN7_735.@SCRATCH3
+027     @PRINTF_D_735.@SCRATCH2
+028     @PSTRINGCN7_735.@SCRATCH4
+028     @PRINTF_D_735.@SCRATCH3
+029     @PRINTF_D_735.@SCRATCH4
+02A     @DIV88.P1
+02A     lcd_putc.c
+02B     lcd_gotoxy.x
+02B     @DIV88.P1
+02B     @delay_ms1.P2
+02C     lcd_gotoxy.y
+02C     @DIV88.@SCRATCH1
+02D     lcd_gotoxy.address
+02E     lcd_gotoxy.@SCRATCH1
+02F     lcd_send_byte.address
+030     lcd_send_byte.n
+031     lcd_read_byte.low
+031     lcd_send_byte.@SCRATCH1
+032     lcd_send_nibble.n
+032     lcd_read_byte.high
+033     lcd_read_byte.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+086     lcdtris
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000008  LCD_INIT_STRING.data
+00000C  @const752.call
+000015  @const761.call
+00001E  @const762.call
+000026  @const763.call
+00002E  @delay_ms1
+000043  lcd_send_nibble
+00004F  lcd_read_nibble
+000055  lcd_send_byte
+00005B  lcd_read_byte
+000095  lcd_init
+0000C8  lcd_gotoxy
+0000DA  lcd_putc
+000106  @PSTRINGCN7_735
+00015A  @DIV88
+00016F  @PRINTF_D_735
+0001C6  MAIN
+0001C6  @cinit1
+0001CD  @cinit2
+
+Project Directory:
+    C:\Users\berki\Desktop\Mikro Projeler\Parking Control System\3_LCD_SAYAC\
+
+Project Files:
+    lcdyazi.c                                               [09-Tem-23 18:19  CRC=2F31030D]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16f877.h [21-Haz-13 16:04  CRC=A355A189]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h [31-Tem-07 13:24  CRC=4E4534F4]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h [14-Tem-11 10:13  CRC=23EDEC8F]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [16-Tem-10 09:27  CRC=897CEC6C]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h [03-Oca-08 13:55  CRC=2D1F019F]
+    ..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [23-Aðu-12 09:01  CRC=D28E8746]
+
+Source signature=A072C2B0
+
+Units:
+    lcdyazi (main)
+
+Compiler Settings:
+    Processor:      PIC16F877
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   lcdyazi.xsym
+    Errors:      LCDYAZI.err
+    Ext Symbols: lcdyazi.esym
+    INHX8:       lcdyazi.hex
+    Symbols:     lcdyazi.sym
+    List:        lcdyazi.lst
+    Debug/COFF:  lcdyazi.cof
+    Project:     lcdyazi.ccspjt
+    Call Tree:   lcdyazi.tre
+    Statistics:  lcdyazi.STA

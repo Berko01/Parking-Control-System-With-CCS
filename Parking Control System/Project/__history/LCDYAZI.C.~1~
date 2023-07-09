@@ -1,0 +1,59 @@
+#include <16f877.h>                 // Kullanýlacak pic headerý çaðrýlýyor
+#include <stdio.h>                  // C standart I/O baþlýk (header) dosyasý çaðrýlýyor 
+#use delay (clock=4000000)          // mikrodenetleyici saat frekansý ayarlanýyor
+#fuses XT,NOWDT,NOPUT,NOPROTECT     // mikrodenetleyici konfigürasyonlarý ayarlanýyor 
+#use fast_io(b)                     // b portu manuel ayaralanacak
+#use fast_io(a)
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+#define use_portb_lcd TRUE          // LCD B portuna baðlý
+#include <lcd.c>                    // lcd.c dosyasý tanýtýlýyor
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+int sayac=0; 
+void main()
+ {
+   set_tris_b(0x00);                // B portu çyky?
+   set_tris_a(0xFF);
+   output_b(0x00);                  // B portunu temizle
+
+   lcd_init();                      // LCD hazyrlanyyor.
+   printf(lcd_putc,"\f sayac=%d",sayac);
+   
+basla:
+   if(input(pin_A0)==0)
+   goto art;
+   if(input(pin_A1)==0)
+   goto azal;
+   goto basla;
+   
+   
+art:
+   delay_ms(75);
+art1:
+   if(input(pin_A0)==0)
+   goto art1;
+   //delay_ms(75);
+   if(sayac>=10)
+   {
+      sayac=10;
+      goto basla;
+   }
+   sayac=sayac+1;
+   printf(lcd_putc,"\f sayac=%d",sayac);
+   goto basla;
+
+azal:
+   delay_ms(75);
+azal1:
+   if(input(pin_A1)==0)
+   goto azal1;
+   //delay_ms(75);
+   if(sayac<=0)
+   {
+      sayac=0;
+      goto basla;
+   }
+   sayac=sayac-1;
+   printf(lcd_putc,"\f sayac=%d",sayac);
+   goto basla;
+   
+ }

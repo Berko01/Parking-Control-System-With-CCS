@@ -1,0 +1,50 @@
+#include <16f877.h>                 // Kullanýlacak pic headerý çaðrýlýyor
+#include <stdio.h>                  // C standart I/O baþlýk (header) dosyasý çaðrýlýyor 
+#use delay (clock=4000000)          // mikrodenetleyici saat frekansý ayarlanýyor
+#fuses XT,NOWDT,NOPUT,NOPROTECT     // mikrodenetleyici konfigürasyonlarý ayarlanýyor 
+#use fast_io(b)                     // b portu manuel ayaralanacak
+#use fast_io(a)
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+#define use_portb_lcd TRUE          // LCD B portuna baðlý
+#include <lcd.c>                    // lcd.c dosyasý tanýtýlýyor
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+int sayac=0; 
+
+int counter = 0;
+void main()
+{
+   set_tris_b(0x00);
+   set_tris_a(0xff);
+   output_b(0x00);
+   
+   lcd_init();
+   printf(lcd_putc,"\f Arac Sayisi %d", counter);
+   while(TRUE)
+   {
+      if(input(pin_A0) == 0)
+      {
+         while(input(pin_A0) == 0);
+         delay_ms(70);
+         counter++;
+         if(counter == 21)
+         {
+            printf(lcd_putc,"\fArac giremez. %d", counter);
+            counter = 20;
+         }
+         else
+         printf(lcd_putc,"\fArac sayisi %d", counter);
+      }
+      
+      if(input(pin_A1) == 0)
+      {
+      delay_ms(70);
+      counter--;
+      if(counter == -1)
+      counter = 0;
+      else
+      printf(lcd_putc,"\fArac Sayisi %d", counter);
+      }
+   }
+
+}
+

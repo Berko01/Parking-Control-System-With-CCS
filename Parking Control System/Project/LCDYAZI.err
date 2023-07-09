@@ -1,0 +1,4 @@
+>>> Warning 202 "lcdyazi.c" Line 11(5,10): Variable never used:   sayac
+      Memory usage:   ROM=7%      RAM=3% - 7%
+      0 Errors,  1 Warnings.
+Build Successful.

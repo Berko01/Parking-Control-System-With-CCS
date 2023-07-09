@@ -1,0 +1,30 @@
+#include <16f877.h>                 // Kullanýlacak pic headerý çaðrýlýyor
+#include <stdio.h>                  // C standart I/O baþlýk (header) dosyasý çaðrýlýyor 
+#use delay (clock=4000000)          // mikrodenetleyici saat frekansý ayarlanýyor
+#fuses XT,NOWDT,NOPUT,NOPROTECT     // mikrodenetleyici konfigürasyonlarý ayarlanýyor 
+#use fast_io(b)                     // b portu manuel ayaralanacak
+#use fast_io(a)
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+#define use_portb_lcd TRUE          // LCD B portuna baðlý
+#include <lcd.c>                    // lcd.c dosyasý tanýtýlýyor
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+int sayac=0; 
+void main()
+ {
+   set_tris_b(0x00);                // B portu çýkýþ
+   set_tris_a(0xFF);
+   output_b(0x00);                  // B portunu temizle
+
+   lcd_init();                      // LCD hazýrlanýyor.
+   printf(lcd_putc,"\f sayac=%d",sayac);
+dongu1:   
+   if(input(pin_A0)==1)
+   goto dongu1;
+dongu2:   
+   if(input(pin_A0)==0)
+   goto dongu2;
+   sayac=sayac+1;
+   printf(lcd_putc,"\f sayac=%d",sayac);
+   goto dongu1;
+ }
+
